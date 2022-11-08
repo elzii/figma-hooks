@@ -28,7 +28,6 @@ export function supportsClipboardAPI(forceUnsupported?: boolean | "DEPRECATED" |
   }
 }
 
-// export const clipboardTextareaCSS = `position: absolute; bottom: 0; border:none; width:0px; height: 0px; left: 0; z-index: -100;`
 export const clipboardTextareaCSS = `position: absolute; bottom: 0; left: 0; border:none; opacity: 0; pointer-events: none;`
 export const DEFAULT_DOM_ELEMENT_ID = `figma-react-clipboard-textarea`
 
@@ -56,6 +55,7 @@ export interface CopyToClipboardHookProps {
 export default function useCopyToClipboard({
   contents,
   logger,
+  removeAfter,
   domElementId = DEFAULT_DOM_ELEMENT_ID,
 }: CopyToClipboardHookProps) {
 
@@ -105,14 +105,14 @@ export default function useCopyToClipboard({
         !!logger && logger.info('[copyToClipboard] -> Runnning execCommand("copy")', ref.current.value)
 
         // // Remove element after we're done
-        // if (removeAfter) {
-        //   sleep(200).then(() => {
-        //     document.querySelectorAll(`#${id}`).forEach((el) => {
-        //       el.remove()
-        //     })
-        //     !!logger && logger.info('[copyToClipboard] -> Removing Element After Copy', document.querySelectorAll(`#${id}`))
-        //   })
-        // }
+        if (removeAfter) {
+          sleep(500).then(() => {
+            document.querySelectorAll(`#${id}`).forEach((el) => {
+              !!logger && logger.info('[copyToClipboard] -> Removing Element After Copy', el)
+              el.remove()
+            })
+          })
+        }
       }
     }
   }, [ref, clipboardApiSupported])
