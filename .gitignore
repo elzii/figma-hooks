@@ -1,0 +1,10 @@
+build
+dist
+.DS_Store
+node_modules
+package-lock.json
+yarn-error.log
+.idea
+.vscode
+*.sublime-workspace
+*.sublime-project
