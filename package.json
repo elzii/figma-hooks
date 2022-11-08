@@ -3,7 +3,10 @@
   "version": "1.0.1",
   "author": "Alexander Zizzo <zizzo.alexander@gmail.com>",
   "description": "React Hooks for use within Figma Plugins",
-  "keywords": [],
+  "keywords": [
+    "figma-hooks", 
+    "figma"
+  ],
   "license": "ISC",
   "repository": {
     "type": "git",

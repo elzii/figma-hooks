@@ -1,3 +1,1 @@
-export * from './copyToClipboard.tsx'
-
-export {}
+export * from './copyToClipboard'
